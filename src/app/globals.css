@@ -8,11 +8,6 @@
 }
 
 @font-face {
-  font-family: "shiasatte";
-  src: url("/fonts/shiasatte.otf") format("opentype");
-}
-
-@font-face {
   font-family: "buildingtracks";
   src: url("/fonts/Buildingsandundertherailwaytracksfree_ver.otf")
     format("opentype");
