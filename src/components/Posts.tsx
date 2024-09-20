@@ -2,7 +2,7 @@ import { useFetchPosts } from "@/hooks/useFetchPosts";
 import { MonoCard } from "./MonoCard";
 
 export const Posts = () => {
-  const { posts, loading } = useFetchPosts();
+  const { posts } = useFetchPosts();
 
   return (
     <div>
