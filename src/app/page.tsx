@@ -6,7 +6,7 @@ import { useFetchPosts } from "@/hooks/useFetchPosts";
 import { useState } from "react";
 
 export default function Home() {
-  const { posts, loading } = useFetchPosts();
+  const { posts } = useFetchPosts();
   const [isSend, setIsSend] = useState<boolean>(false);
   return (
     <div>
