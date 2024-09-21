@@ -12,7 +12,6 @@ type FormData = {
 
 export const MonoPickup = () => {
   const { items, loading } = useFetchItems();
-  const [isSend, setIsSend] = useState<boolean>(false);
   const defaultValues: FormData = {
     name: "",
     body: "",
@@ -79,10 +78,11 @@ export const MonoPickup = () => {
             placeholder="あなたが考えたモノがたり(これからの活用方法)をここに書いてください！"
             {...register("body", { required: "使い道が入力されていません" })}
           />
-          <div className="text-red-500 text-xs p-1">{errors.body?.message}</div>
+          <div className="text-red-500 text-xs my-2">
+            {errors.body?.message}
+          </div>
           <button
             type="submit"
-            disabled={isSend}
             className="relative w-full flex items-center justify-center bg-black font-black rounded text-white py-3 transition-all duration-300 hover:brightness-125 active:scale-95 overflow-hidden"
           >
             使い道を投稿する
