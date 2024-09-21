@@ -1,6 +1,5 @@
 "use client";
 import { useFetchItems } from "@/hooks/useFetchItems";
-import { useState } from "react";
 import { MonoCard } from "./MonoCard";
 import { Divider } from "./Divider";
 import { useForm } from "react-hook-form";
