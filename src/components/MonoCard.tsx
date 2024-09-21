@@ -13,7 +13,7 @@ export const MonoCard = ({
   ) : (
     <div className="bg-white w-max h-max p-6 shadow-md">
       {item.imageUrl !== "null" && (
-        <div className="h-[340px] w-72 relative overflow-hidden">
+        <div className="h-72 w-72 relative overflow-hidden">
           <Image
             key={item.id}
             src={item.imageUrl}
@@ -24,7 +24,7 @@ export const MonoCard = ({
         </div>
       )}
       <div className="max-w-72 bg-opacity-80 rounded-b-md">
-        <div className="py-4">
+        <div className="py-4 min-h-28">
           <p className="text-sm font-bold">{item.description}</p>
         </div>
         <div className="flex items-center justify-between">

@@ -1,10 +1,39 @@
+"use client";
+import { useEffect, useState } from "react";
+
 export const Header = () => {
+  const [scrollY, setScrollY] = useState(0);
+  const [isVisible, setIsVisible] = useState(true);
+
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > scrollY && currentScrollY > 100) {
+      setIsVisible(false);
+    } else {
+      setIsVisible(true);
+    }
+
+    setScrollY(currentScrollY);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [scrollY]);
+
   return (
     <header
       className={`
         fixed top-0 md:flex items-center h-20 mx-auto
-        px-2 md:pt-7 pb-10 w-full max-w-4xl bg-theme
-        text-black select-none border-b-2 border-black backdrop-blur z-50`}
+        px-2 lg:pt-5 pb-10 w-full max-w-4xl bg-theme
+        text-black select-none border-b-2 border-black z-50
+        transition-all duration-1000
+        ${!isVisible && "-translate-y-28"}`}
+      style={{ backgroundColor: "#d7dcd8ee" }}
     >
       <div className="relative md:text-6xl text-4xl w-max font-buildingtracks">
         <h1 className="font-bold">
