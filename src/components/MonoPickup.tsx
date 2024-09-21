@@ -3,6 +3,8 @@ import { useFetchItems } from "@/hooks/useFetchItems";
 import { MonoCard } from "./MonoCard";
 import { Divider } from "./Divider";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { isErrored } from "stream";
 
 type FormData = {
   name: string;
@@ -11,6 +13,7 @@ type FormData = {
 
 export const MonoPickup = () => {
   const { items, loading } = useFetchItems();
+  const [isSend, setIsSend] = useState<boolean>(false);
   const defaultValues: FormData = {
     name: "",
     body: "",
@@ -24,6 +27,7 @@ export const MonoPickup = () => {
 
   const onsubmit = (data: FormData) => {
     console.log(data);
+    setIsSend(true);
   };
 
   const headText = (
@@ -83,13 +87,13 @@ export const MonoPickup = () => {
           </div>
           <button
             type="submit"
-            className="relative w-full flex items-center justify-center bg-black font-black rounded text-white py-3 transition-all duration-300 hover:brightness-125 active:scale-95 overflow-hidden"
+            className="w-full flex items-center justify-center bg-black font-black rounded text-white py-3 transition-all duration-300 hover:brightness-125 active:scale-95 overflow-hidden"
           >
-            使い道を投稿する
+            {isSend ? "ありがとうございます！" : "使い道を投稿する"}
             <span
-              className={`
-                  absolute w-full h-full flex items-center ml-1 material-icons my-auto z-10 transition-all duration-700
-                  top-3.5 left-0 opacity-0 hover:left-[75px] hover:opacity-100`}
+              className={`flex items-center ml-1 material-icons my-auto z-10 transition-all duration-1000 ${
+                isSend && "translate-x-80 opacity-0 w-0"
+              }`}
               style={{ fontSize: "20px" }}
             >
               send
