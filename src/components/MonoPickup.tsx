@@ -4,7 +4,6 @@ import { MonoCard } from "./MonoCard";
 import { Divider } from "./Divider";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { isErrored } from "stream";
 
 type FormData = {
   name: string;
@@ -55,7 +54,7 @@ export const MonoPickup = () => {
     <section className="relative lg:flex bg-white bg-opacity-40 rounded-md lg:p-6 p-2 pt-6">
       {items.length > 0 ? (
         <div className="relative flex justify-center">
-          <div className="absolute -top-1 -left-0.5 text-2xl bg-orange-400 text-white font-buildingtracks px-3 py-1 z-10 -rotate-3">
+          <div className="absolute -top-1 -left-0.5 text-2xl bg-orange-400 text-white font-buildingtracks px-3 py-1 z-10 -rotate-3 shadow">
             <p className="-translate-y-1">求む！使い道</p>
           </div>
           <MonoCard item={items[0]} loading={loading} />
