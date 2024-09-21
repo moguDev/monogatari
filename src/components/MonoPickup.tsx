@@ -23,7 +23,7 @@ export const MonoPickup = () => {
   } = useForm({ defaultValues });
 
   const onsubmit = (data: FormData) => {
-    console.log("submit");
+    console.log(data);
   };
 
   const headText = (
