@@ -1,24 +1,24 @@
 import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "@/lib/firebase/firebase";
-import { Post } from "@/types";
+import { Item } from "@/types";
 
-export const useFetchPosts = () => {
+export const useFetchItems = () => {
   const [loading, setLoading] = useState<boolean>(false);
-  const [posts, setPosts] = useState<Post[]>([]);
+  const [items, setItems] = useState<Item[]>([]);
 
   const fetch = async () => {
     setLoading(true);
     try {
-      const postsCollection = collection(db, "posts");
-      const postsSnapshot = await getDocs(postsCollection);
-      const postsData = postsSnapshot.docs.map((doc) => ({
+      const itemsCollection = collection(db, "items");
+      const itemssSnapshot = await getDocs(itemsCollection);
+      const itemssData = itemssSnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
-      })) as Post[];
-      setPosts(postsData);
+      })) as Item[];
+      setItems(itemssData);
     } catch (error) {
-      console.error("Error fetching posts: ", error);
+      console.error("Error fetching itemss: ", error);
     } finally {
       setLoading(false);
     }
@@ -28,5 +28,5 @@ export const useFetchPosts = () => {
     fetch();
   }, []);
 
-  return { posts, loading };
+  return { items, loading };
 };

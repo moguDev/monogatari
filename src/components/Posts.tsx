@@ -1,13 +1,13 @@
-import { useFetchPosts } from "@/hooks/useFetchPosts";
+import { useFetchItems } from "@/hooks/useFetchItems";
 import { MonoCard } from "./MonoCard";
 
 export const Posts = () => {
-  const { posts } = useFetchPosts();
+  const { items, loading } = useFetchItems();
 
   return (
     <div>
-      {posts.map((post, index) => (
-        <MonoCard key={index} post={post} />
+      {items.map((item, index) => (
+        <MonoCard key={index} item={item} loading={loading} />
       ))}
     </div>
   );
