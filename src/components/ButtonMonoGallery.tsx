@@ -1,25 +1,21 @@
 export const ButtonMonoGallery = () => {
   return (
-    <button
+    <div
       className={`
-            flex items-center justify-center w-full bg-white bg-opacity-30 text-black rounded-md
-            transition-all duration-300 hover:brightness-110 hover:-translate-y-1 hover:shadow
-            active:brightness-100 active:translate-y-0 active:shadow-none`}
+            flex items-center w-full bg-white bg-opacity-30 text-black rounded-md lg:p-4 p-2`}
     >
-      <span className="relative material-icons" style={{ fontSize: "124px" }}>
-        <div className="absolute top-8 left-[42px] bg-white opacity-90 w-10 h-10"></div>
-        <div className="absolute top-[42px] left-[16.1px] bg-white opacity-90 w-[15px] h-6"></div>
-        <div className="absolute top-[42px] right-[16px] bg-white opacity-90 w-[15px] h-6"></div>
+      <span
+        className="relative material-icons mr-1"
+        style={{ fontSize: "44px" }}
+      >
+        <div className="absolute top-3 left-[15px] bg-white w-3.5 h-3.5" />
+        <div className="absolute top-[15.5px] left-[5.5px] bg-white w-[5.4px] h-2" />
+        <div className="absolute top-[15.5px] right-[5.5px] bg-white w-[5.4px] h-2" />
         view_carousel
       </span>
-      <div className="ml-2 flex flex-col justify-center items-start">
-        <p className="font-buildingtracks text-5xl -translate-y-3">
-          モノぎゃらりー
-        </p>
-        <p className="text-xs -translate-y-1">
-          みんなの手放せないモノの一覧がみれます
-        </p>
-      </div>
-    </button>
+      <p className="font-buildingtracks text-3xl -translate-y-1.5">
+        モノぎゃらりー
+      </p>
+    </div>
   );
 };

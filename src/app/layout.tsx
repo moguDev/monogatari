@@ -25,7 +25,7 @@ export default function RootLayout({
         className={`font-bokutachi max-w-4xl mx-auto bg-theme text-black relative`}
       >
         <Header />
-        <main className="mt-20 p-2">{children}</main>
+        <main className="lg:mt-24 mt-20 p-2">{children}</main>
         <Footer />
       </body>
     </html>
