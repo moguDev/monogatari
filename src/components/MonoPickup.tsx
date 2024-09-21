@@ -4,6 +4,11 @@ import { useState } from "react";
 import { MonoCard } from "./MonoCard";
 import { Divider } from "./Divider";
 
+type formData = {
+  name: string;
+  body: string;
+};
+
 export const MonoPickup = () => {
   const { items, loading } = useFetchItems();
   const [isSend, setIsSend] = useState<boolean>(false);
@@ -30,7 +35,7 @@ export const MonoPickup = () => {
   );
 
   return (
-    <section className="relative lg:flex bg-white bg-opacity-30 rounded-md lg:p-6 p-2">
+    <section className="relative lg:flex bg-white bg-opacity-40 rounded-md lg:p-6 p-2">
       <div className="lg:hidden">{headText}</div>
       {items.length > 0 ? (
         <div className="relative flex justify-center">
@@ -44,34 +49,31 @@ export const MonoPickup = () => {
       )}
       <div className="w-full lg:px-4 lg:pt-0 pt-4">
         <div className="lg:block hidden">{headText}</div>
-        <form className="pt-2">
+        <form className="pt-2 px-2">
           <input
             id="name"
             type="text"
-            className="w-full bg-white  border rounded-md font-thin focus:outline-none placeholder:text-xs p-2 mb-2"
-            placeholder="あなたのなまえ（入力がない場合は「名無し」になります）"
+            className="w-full bg-white  border rounded-md font-thin focus:outline-none p-2 mb-2"
+            placeholder="なまえ（入力がない場合は「名無し」になります）"
           />
           <textarea
             id="body"
             rows={3}
-            className="w-full bg-white  border rounded-md font-thin focus:outline-none placeholder:text-xs px-2 py-5 mb-2"
+            className="w-full bg-white  border rounded-md font-thin focus:outline-none px-2 py-3 mb-2"
             placeholder="あなたが考えたモノがたり(これからの活用方法)をここに書いてください！"
           />
           <button
             type="button"
             onClick={() => setIsSend(true)}
             disabled={isSend}
-            className="relative w-full flex items-center justify-center bg-black font-black rounded text-white py-3 transition-all duration-300 hover:brightness-125 active:scale-95"
+            className="relative w-full flex items-center justify-center bg-black font-black rounded text-white py-3 transition-all duration-300 hover:brightness-125 active:scale-95 overflow-hidden"
           >
-            <span className="font-buildingtracks text-3xl -translate-y-[6.8px] mr-0.5">
-              モノがたり
-            </span>
-            を投稿する
+            新しい使い道を投稿する
             <span
               className={`
                   absolute w-full h-full flex items-center ml-1 material-icons my-auto z-10 transition-all duration-700
                   top-[18px] left-0 opacity-0 hover:left-[102px] hover:opacity-100 ${
-                    isSend && "translate-x-[1000px]"
+                    isSend && "translate-x-96 hover:opacity-0"
                   }
                   `}
               style={{ fontSize: "20px" }}

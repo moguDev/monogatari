@@ -1,19 +1,16 @@
 import { useState } from "react";
 
-// データの型定義
 interface PostData {
   name: string;
   body: string;
   itemId: string;
 }
 
-// レスポンスの型定義
 interface PostResponse {
   id: string;
   message: string;
 }
 
-// カスタムフックを作成
 export const usePostPost = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
