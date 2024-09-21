@@ -1,12 +1,12 @@
 export const Footer = () => {
   return (
-    <footer className="flex items-center justify-center fixed bottom-0 w-full max-w-4xl mx-auto p-3">
-      <p className="text-center px-3 font-mono text-sm">
+    <footer className="lg:flex items-center justify-center w-full max-w-4xl mx-auto p-2">
+      <p className="px-3 font-mono text-sm">
         © 2024 <span className="font-buildingtracks text-2xl">モノがたり</span>
         .com
       </p>
-      <p className="translate-y-1.5">|</p>
-      <p className="text-center px-3 font-mono text-xs">
+      <p className="translate-y-1.5 lg:block hidden">|</p>
+      <p className="px-3 font-mono text-xs">
         Developed by
         <a
           href="https://x.com/mogu_57B"

@@ -18,6 +18,9 @@ const config: Config = {
         black: "#213854",
         theme: "d7dcd8",
       },
+      backgroundColor: {
+        theme: "d7dcd8",
+      },
     },
   },
   plugins: [require("daisyui")],

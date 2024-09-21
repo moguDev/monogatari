@@ -11,9 +11,9 @@ export const MonoCard = ({
   return loading ? (
     <></>
   ) : (
-    <div className="bg-white w-max h-max p-4 shadow-md">
+    <div className="bg-white w-max h-max p-6 shadow-md">
       {item.imageUrl !== "null" && (
-        <div className="h-72 w-80 relative overflow-hidden">
+        <div className="h-[340px] w-72 relative overflow-hidden">
           <Image
             key={item.id}
             src={item.imageUrl}
@@ -23,9 +23,11 @@ export const MonoCard = ({
           />
         </div>
       )}
-      <div className="max-w-80 bg-opacity-80 p-5 rounded-b-md">
-        <p className="text-sm font-bold">{item.description}</p>
-        <div className="flex items-center justify-between pt-6">
+      <div className="max-w-72 bg-opacity-80 rounded-b-md">
+        <div className="py-4">
+          <p className="text-sm font-bold">{item.description}</p>
+        </div>
+        <div className="flex items-center justify-between">
           <p className="flex items-center text-sm font-sans">
             <span className="material-icons" style={{ fontSize: "16px" }}>
               lightbulb
