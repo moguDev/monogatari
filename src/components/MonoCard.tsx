@@ -8,7 +8,9 @@ export const MonoCard = ({
   item: Item;
   loading: boolean;
 }) => {
-  return (
+  return loading ? (
+    <></>
+  ) : (
     <div className="bg-white w-max h-max p-4 shadow-md">
       {item.imageUrl !== "null" && (
         <div className="h-72 w-80 relative overflow-hidden">
