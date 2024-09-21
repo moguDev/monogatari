@@ -5,7 +5,7 @@ import { MonoCard } from "./MonoCard";
 import { Divider } from "./Divider";
 import { useForm } from "react-hook-form";
 
-type formData = {
+type FormData = {
   name: string;
   body: string;
 };
@@ -13,7 +13,7 @@ type formData = {
 export const MonoPickup = () => {
   const { items, loading } = useFetchItems();
   const [isSend, setIsSend] = useState<boolean>(false);
-  const defaultValues: formData = {
+  const defaultValues: FormData = {
     name: "",
     body: "",
   };
@@ -64,33 +64,32 @@ export const MonoPickup = () => {
       )}
       <div className="w-full lg:px-4 lg:pt-0 pt-4">
         <div className="lg:block hidden">{headText}</div>
-        <form className="pt-2" onSubmit={handleSubmit(onsubmit)}>
+        <form className="pt-2" method="post" onSubmit={handleSubmit(onsubmit)}>
           <input
             id="name"
             type="text"
             className="w-full bg-white  border rounded-md font-thin focus:outline-none p-2 mb-2"
             placeholder="なまえ（入力がない場合は「名無し」になります）"
+            {...register("name")}
           />
           <textarea
             id="body"
             rows={3}
             className="w-full bg-white  border rounded-md font-thin focus:outline-none px-2 py-3 mb-2"
             placeholder="あなたが考えたモノがたり(これからの活用方法)をここに書いてください！"
+            {...register("body", { required: "使い道が入力されていません" })}
           />
+          <div className="text-red-500 text-xs p-1">{errors.body?.message}</div>
           <button
-            type="button"
-            onClick={() => setIsSend(true)}
+            type="submit"
             disabled={isSend}
             className="relative w-full flex items-center justify-center bg-black font-black rounded text-white py-3 transition-all duration-300 hover:brightness-125 active:scale-95 overflow-hidden"
           >
-            新しい使い道を投稿する
+            使い道を投稿する
             <span
               className={`
                   absolute w-full h-full flex items-center ml-1 material-icons my-auto z-10 transition-all duration-700
-                  top-[18px] left-0 opacity-0 hover:left-[102px] hover:opacity-100 ${
-                    isSend && "translate-x-96 hover:opacity-0"
-                  }
-                  `}
+                  top-3.5 left-0 opacity-0 hover:left-[75px] hover:opacity-100`}
               style={{ fontSize: "20px" }}
             >
               send
