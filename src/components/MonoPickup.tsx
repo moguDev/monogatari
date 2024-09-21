@@ -9,9 +9,9 @@ export const MonoPickup = () => {
   const [isSend, setIsSend] = useState<boolean>(false);
 
   const headText = (
-    <div className="relative w-max mb-4">
-      <div className="absolute bottom-0 translate-x-4 translate-y-2 bg-yellow-500 bg-opacity-60 h-4 w-full -z-10" />
-      <h2 className="relative font-buildingtracks flex items-center text-4xl z-10">
+    <div className="relative w-max  mb-4">
+      <div className="absolute bottom-0 translate-x-2 translate-y-1 bg-yellow-500 bg-opacity-60 h-4 w-full -z-10" />
+      <h2 className="relative font-buildingtracks flex items-center lg:text-4xl text-[28px] z-10">
         <span
           className="absolute top-[1px] left-[25px] material-icons"
           style={{ fontSize: "16px" }}
@@ -30,17 +30,20 @@ export const MonoPickup = () => {
   );
 
   return (
-    <section className="relative flex bg-white bg-opacity-30 rounded-md p-6">
-      <div className="absolute top-2 left-2 text-2xl bg-orange-400 text-white rounded-md font-buildingtracks px-2 z-10 border-2 border-white border-opacity-80">
-        <p className="-translate-y-1">ピックアップ</p>
-      </div>
+    <section className="relative lg:flex bg-white bg-opacity-30 rounded-md lg:p-6 p-2">
+      <div className="lg:hidden">{headText}</div>
       {items.length > 0 ? (
-        <MonoCard item={items[0]} loading={loading} />
+        <div className="relative flex justify-center">
+          <div className="absolute -top-1 -left-0.5 text-2xl bg-orange-400 text-white font-buildingtracks px-2 z-10 -rotate-3">
+            <p className="-translate-y-1">求む！使い道</p>
+          </div>
+          <MonoCard item={items[0]} loading={loading} />
+        </div>
       ) : (
         <></>
       )}
-      <div className="w-full px-4">
-        {headText}
+      <div className="w-full lg:px-4 lg:pt-0 pt-4">
+        <div className="lg:block hidden">{headText}</div>
         <form className="pt-2">
           <input
             id="name"
