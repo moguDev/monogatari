@@ -3,6 +3,7 @@ import { useFetchItems } from "@/hooks/useFetchItems";
 import { useState } from "react";
 import { MonoCard } from "./MonoCard";
 import { Divider } from "./Divider";
+import { useForm } from "react-hook-form";
 
 type formData = {
   name: string;
@@ -12,6 +13,20 @@ type formData = {
 export const MonoPickup = () => {
   const { items, loading } = useFetchItems();
   const [isSend, setIsSend] = useState<boolean>(false);
+  const defaultValues: formData = {
+    name: "",
+    body: "",
+  };
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ defaultValues });
+
+  const onsubmit = (data: FormData) => {
+    console.log("submit");
+  };
 
   const headText = (
     <div className="relative w-max  mb-4">
@@ -49,7 +64,7 @@ export const MonoPickup = () => {
       )}
       <div className="w-full lg:px-4 lg:pt-0 pt-4">
         <div className="lg:block hidden">{headText}</div>
-        <form className="pt-2 px-2">
+        <form className="pt-2" onSubmit={handleSubmit(onsubmit)}>
           <input
             id="name"
             type="text"
