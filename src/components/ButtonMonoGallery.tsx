@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const GridItem = ({ item }: { item: Item }) => {
   return (
-    <div className="bg-white shadow-md w-full p-3">
+    <div className="bg-white shadow-md p-3 m-1 cursor-pointer hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
       <div className="relative w-full h-44 mx-auto">
         <Image
           src={item.imageUrl}
@@ -28,7 +28,7 @@ export const ButtonMonoGallery = () => {
     <div className="w-full bg-white bg-opacity-30 text-black rounded-md lg:p-4 p-2">
       <div
         className={`
-            flex items-center mb-3`}
+            flex items-center mb-3 border-b-2 border-black`}
       >
         <span
           className="relative material-icons mr-0.5"
@@ -43,7 +43,7 @@ export const ButtonMonoGallery = () => {
           モノぎゃらりー
         </p>
       </div>
-      <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 space-x-1 mb-2">
+      <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 mb-2">
         {items.map((item, index) => (
           <GridItem key={index} item={item} />
         ))}

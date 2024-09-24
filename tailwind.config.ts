@@ -14,7 +14,7 @@ const config: Config = {
         buildingtracks: ["buildingtracks", "sans-serif"],
       },
       colors: {
-        white: "#edeee9",
+        white: "#f1f1f1",
         black: "#213854",
         theme: "d7dcd8",
       },

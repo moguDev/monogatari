@@ -95,7 +95,7 @@ export const NewItemModal = () => {
             {errors.image?.message}
           </div>
           <textarea
-            placeholder="モノについての思い出や思い入れなどを語りましょう"
+            placeholder="モノの思い出などを語りましょう"
             className="mt-2 w-full bg-white focus:outline-none p-1 placeholder:opacity-50"
             {...register("description", {
               required: "※思い出や思い入れを入力してください",
@@ -131,13 +131,14 @@ export const NewItemModal = () => {
               style={{ backgroundColor: "#fcfcfcee" }}
             >
               <span className="loading loading-spinner loading-lg text-gray-500" />
-              <p className="mt-2">{progress}%</p>
+              <p className="mt-2">{Math.floor(progress * 10) / 10}%</p>
             </div>
           )}
         </div>
         <div className="modal-action mt-2">
           <button
             type="button"
+            className="w-1/3 bg-white bg-opacity-90 backdrop-blur rounded-md text-sm transition-all duration-300 active:scale-95"
             onClick={() => {
               (
                 document.getElementById("new_item_modal") as HTMLDialogElement
@@ -149,10 +150,13 @@ export const NewItemModal = () => {
           <button
             type="submit"
             className={`
-              bg-orange-500 text-white px-2 py-3 rounded-md font-bold
-              transition-all duration-300 active:scale-95`}
+              w-2/3 bg-orange-500 text-white px-2 py-3 rounded-md font-bold
+              transition-all duration-300 active:scale-95 flex items-center justify-center`}
           >
-            モノがたりを作成
+            <span className="font-buildingtracks text-2xl -translate-y-[5px]">
+              モノがたり
+            </span>
+            を作成
           </button>
         </div>
       </form>
