@@ -57,8 +57,9 @@ export const MonoPickup = () => {
   );
 
   useEffect(() => {
-    items.length > 0 &&
+    if (items.length > 0) {
       setItem(items[Math.floor(Math.random() * items.length)]);
+    }
   }, [items]);
 
   return (

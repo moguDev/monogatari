@@ -38,7 +38,9 @@ export const NewItemModal = () => {
     fileReader.onload = () => {
       setImageSource(fileReader.result as string);
     };
-    imageFile && fileReader.readAsDataURL(imageFile[0]);
+    if (imageFile) {
+      fileReader.readAsDataURL(imageFile[0]);
+    }
   }, [imageFile]);
 
   return (
