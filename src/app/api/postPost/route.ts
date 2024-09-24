@@ -3,7 +3,7 @@ import { db } from "@/lib/firebase/firebase"; // Firebaseの設定ファイル�
 import { collection, addDoc } from "firebase/firestore";
 
 // POSTリクエストを処理するためのエンドポイント
-export async function POST(req: NextRequest) {
+export const POST = async (req: NextRequest) => {
   try {
     // リクエストボディをパース
     const { itemId, userName, body } = await req.json();
@@ -35,4 +35,4 @@ export async function POST(req: NextRequest) {
       { status: 500 }
     );
   }
-}
+};

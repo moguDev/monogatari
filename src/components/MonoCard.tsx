@@ -9,7 +9,9 @@ export const MonoCard = ({
   loading: boolean;
 }) => {
   return loading ? (
-    <></>
+    <div className="w-72 h-full">
+      <span className="loading loading-spinner loading-lg" />
+    </div>
   ) : (
     <div className="bg-white w-max h-max p-6 shadow-md">
       {item.imageUrl !== "null" && (

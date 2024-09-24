@@ -31,7 +31,7 @@ export const Header = () => {
         fixed top-0 md:flex items-center h-20 mx-auto
         px-2 lg:pt-5 pb-10 w-full max-w-4xl bg-theme
         text-black select-none border-b-2 border-black z-50
-        transition-all duration-1000
+        transition-all duration-700
         ${!isVisible && "-translate-y-28"}`}
       style={{ backgroundColor: "#d7dcd8ee" }}
     >

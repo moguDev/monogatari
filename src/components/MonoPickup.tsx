@@ -3,18 +3,22 @@ import { useFetchItems } from "@/hooks/useFetchItems";
 import { MonoCard } from "./MonoCard";
 import { Divider } from "./Divider";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { usePostPost } from "@/hooks/usePostPost";
+import { Item } from "@/types";
 
 type FormData = {
-  name: string;
+  userName: string;
   body: string;
 };
 
 export const MonoPickup = () => {
   const { items, loading } = useFetchItems();
+  const [item, setItem] = useState<Item | null>(null);
   const [isSend, setIsSend] = useState<boolean>(false);
+  const { postPost } = usePostPost();
   const defaultValues: FormData = {
-    name: "",
+    userName: "",
     body: "",
   };
 
@@ -25,14 +29,16 @@ export const MonoPickup = () => {
   } = useForm({ defaultValues });
 
   const onsubmit = (data: FormData) => {
-    console.log(data);
-    setIsSend(true);
+    if (item) {
+      setIsSend(true);
+      postPost({ ...data, itemId: item?.id });
+    }
   };
 
   const headText = (
     <div className="relative w-max mb-4 overflow-hidden">
       <div className="absolute bottom-0 translate-x-2 translate-y-1 bg-yellow-400 bg-opacity-50 h-4 w-full" />
-      <h2 className="relative font-buildingtracks flex items-center lg:text-4xl text-[28px] z-10">
+      <h2 className="relative font-buildingtracks flex items-center md:text-4xl text-[28px] z-10">
         <span
           className="absolute top-[1px] left-[25px] material-icons"
           style={{ fontSize: "16px" }}
@@ -50,19 +56,24 @@ export const MonoPickup = () => {
     </div>
   );
 
+  useEffect(() => {
+    items.length > 0 &&
+      setItem(items[Math.floor(Math.random() * items.length)]);
+  }, [items]);
+
   return (
-    <section className="relative lg:flex bg-white bg-opacity-40 rounded-md lg:p-6 p-2 pt-6">
-      {items.length > 0 ? (
+    <section className="relative md:flex bg-white bg-opacity-40 rounded-md md:p-6 p-2 pt-6">
+      {item ? (
         <div className="relative flex justify-center">
           <div className="absolute -top-1 -left-0.5 text-2xl bg-orange-400 text-white font-buildingtracks px-3 py-1 z-10 -rotate-3 shadow">
             <p className="-translate-y-1">求む！使い道</p>
           </div>
-          <MonoCard item={items[0]} loading={loading} />
+          <MonoCard item={item} loading={loading} />
         </div>
       ) : (
         <></>
       )}
-      <div className="w-full lg:px-4 px-2 lg:pt-0 pt-4">
+      <div className="w-full md:px-4 px-2 md:pt-0 pt-4">
         <form method="post" onSubmit={handleSubmit(onsubmit)}>
           <div className="bg-white shadow-md p-2 mb-3">
             <div className="mb-2">{headText}</div>
@@ -71,11 +82,11 @@ export const MonoPickup = () => {
               type="text"
               className="w-full bg-white  border-b border-black border-opacity-30 font-thin focus:outline-none p-2 mb-2"
               placeholder="あなたのなまえ"
-              {...register("name")}
+              {...register("userName")}
             />
             <textarea
               id="body"
-              rows={3}
+              rows={4}
               className="w-full bg-white font-thin focus:outline-none px-2 py-3"
               placeholder="あなたが考えた使い道をここに書いてください！"
               {...register("body", { required: "※使い道が入力されていません" })}
@@ -86,7 +97,7 @@ export const MonoPickup = () => {
           </div>
           <button
             type="submit"
-            className="w-full flex items-center justify-center bg-black font-black rounded text-white py-3 transition-all duration-300 hover:brightness-125 active:scale-95 overflow-hidden"
+            className="w-full flex items-center justify-center bg-black font-black rounded text-white py-4 transition-all duration-300 hover:brightness-125 active:scale-95 overflow-hidden"
           >
             {isSend ? "ありがとうございます！" : "使い道を投稿する"}
             <span
@@ -100,8 +111,8 @@ export const MonoPickup = () => {
           </button>
         </form>
         <Divider />
-        <div className="space-y-1">
-          <button className="flex items-center justify-center w-full py-2 bg-white font-bold border-2 border-black rounded transition-all duration-300 hover:brightness-105 active:scale-95">
+        <div className="space-y-2">
+          <button className="flex items-center justify-center w-full py-3 bg-white font-bold border-2 border-black rounded transition-all duration-300 hover:brightness-105 active:scale-95">
             <span className="material-icons mr-1" style={{ fontSize: "28px" }}>
               groups
             </span>
