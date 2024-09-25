@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export const Header = () => {
@@ -35,14 +36,17 @@ export const Header = () => {
         ${!isVisible && "-translate-y-28"}`}
       style={{ backgroundColor: "#d7dcd8ee" }}
     >
-      <div className="relative md:text-6xl text-4xl w-max font-buildingtracks">
+      <Link
+        href="/"
+        className="relative md:text-6xl text-4xl w-max font-buildingtracks"
+      >
         <h1 className="font-bold">
           モノ<span className="opacity-95">がたり</span>
         </h1>
         <h1 className="font-bold absolute top-0 translate-x-1 translate-y-0.5 opacity-20">
           モノがたり
         </h1>
-      </div>
+      </Link>
       <p className="h-full md:p-2 md:text-xl text-md font-buildingtracks">
         捨てられない<span className="md:text-2xl text-xl">「モノ」</span>
         の使い道をみんなで考えるアプリ

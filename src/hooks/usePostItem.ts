@@ -14,7 +14,7 @@ export const usePostItem = () => {
     setLoading(true);
     try {
       const imageUrl = await uploadImage(imageFile);
-      const res = await axios.post("/api/postItem", {
+      const res = await axios.post("/api/item", {
         imageUrl,
         description,
         userName,

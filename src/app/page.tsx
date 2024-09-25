@@ -1,15 +1,17 @@
-import { ButtonMonoGallery } from "@/components/ButtonMonoGallery";
+"use client";
+import { MonoGallery } from "@/components/MonoGallery";
 import { Divider } from "@/components/Divider";
 import { FloatingActionButton } from "@/components/FloatingActionButton";
 import { MonoPickup } from "@/components/MonoPickup";
+import { RecoilRoot } from "recoil";
 
 export default function Home() {
   return (
-    <div>
+    <RecoilRoot>
       <MonoPickup />
       <Divider />
-      <ButtonMonoGallery />
+      <MonoGallery />
       <FloatingActionButton />
-    </div>
+    </RecoilRoot>
   );
 }

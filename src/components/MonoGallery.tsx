@@ -1,11 +1,14 @@
-"use client";
 import { useFetchItems } from "@/hooks/useFetchItems";
 import { Item } from "@/types";
 import Image from "next/image";
+import Link from "next/link";
 
 const GridItem = ({ item }: { item: Item }) => {
   return (
-    <div className="bg-white shadow-md p-3 m-1 cursor-pointer hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+    <Link
+      href={`/${item.id}`}
+      className="bg-white shadow-md p-3 m-1 cursor-pointer hover:-translate-y-1 hover:shadow-lg transition-all duration-300 relative"
+    >
       <div className="relative w-full h-44 mx-auto">
         <Image
           src={item.imageUrl}
@@ -18,11 +21,11 @@ const GridItem = ({ item }: { item: Item }) => {
         <p></p>
         <p>{item.userName}</p>
       </div>
-    </div>
+    </Link>
   );
 };
 
-export const ButtonMonoGallery = () => {
+export const MonoGallery = () => {
   const { items } = useFetchItems();
   return (
     <div className="w-full bg-white bg-opacity-30 text-black rounded-md lg:p-4 p-2">

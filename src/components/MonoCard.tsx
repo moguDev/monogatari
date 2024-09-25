@@ -1,20 +1,11 @@
+import { useFetchPostsByItemId } from "@/hooks/useFetchPostsByItemId";
 import { Item } from "@/types";
 import Image from "next/image";
 
-export const MonoCard = ({
-  item,
-  loading,
-}: {
-  item: Item;
-  loading: boolean;
-}) => {
-  return loading ? (
-    <div className="w-72 h-full">
-      <span className="loading loading-spinner loading-lg" />
-    </div>
-  ) : (
+export const MonoCard = ({ item }: { item: Item | null }) => {
+  return (
     <div className="bg-white w-max h-max p-6 shadow-md">
-      {item.imageUrl !== "null" && (
+      {item ? (
         <div className="h-72 w-72 relative overflow-hidden">
           <Image
             key={item.id}
@@ -24,10 +15,19 @@ export const MonoCard = ({
             fill
           />
         </div>
+      ) : (
+        <div className="h-72 w-72 bg-gray-200 rounded-none flex flex-col items-center justify-center opacity-50">
+          <span className="loading loading-dots loading-md text-black" />
+          <p className="text-xs">読み込み中...</p>
+        </div>
       )}
       <div className="max-w-72 bg-opacity-80 rounded-b-md">
         <div className="py-4 min-h-28">
-          <p className="text-sm font-bold">{item.description}</p>
+          {item ? (
+            <p className="text-sm font-bold">{item.description}</p>
+          ) : (
+            <></>
+          )}
         </div>
         <div className="flex items-center justify-between">
           <p className="flex items-center text-sm font-sans">
@@ -36,7 +36,7 @@ export const MonoCard = ({
             </span>
             {0}
           </p>
-          <p className="text-xs">{item.userName}</p>
+          {item ? <p className="text-xs">{item.userName}</p> : <></>}
         </div>
       </div>
     </div>
