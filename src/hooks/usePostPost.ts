@@ -20,7 +20,9 @@ export const usePostPost = () => {
         setError("An unknown error occurred");
       }
     } finally {
-      fetchPosts && (await fetchPosts());
+      if (fetchPosts) {
+        await fetchPosts();
+      }
       setLoading(false);
     }
   };
