@@ -1,4 +1,3 @@
-import { useFetchPostsByItemId } from "@/hooks/useFetchPostsByItemId";
 import { Item } from "@/types";
 import Image from "next/image";
 

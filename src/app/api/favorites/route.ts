@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
       { message: "Favorite added", id: docRef.id },
       { status: 201 }
     );
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { message: "Error adding favorite" },
       { status: 500 }
