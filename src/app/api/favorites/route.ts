@@ -11,8 +11,7 @@ import {
 } from "firebase/firestore";
 import { db } from "@/lib/firebase/firebase";
 
-// IP アドレスを取得する関数
-export const getClientIp = (request: NextRequest): string => {
+const getClientIp = (request: NextRequest): string => {
   const ip = request.headers.get("x-forwarded-for") || request.ip || "";
   return ip.split(",")[0];
 };

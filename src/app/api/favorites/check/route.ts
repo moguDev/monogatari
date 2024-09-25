@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "@/lib/firebase/firebase";
-import { getClientIp } from "../route";
+
+const getClientIp = (request: NextRequest): string => {
+  const ip = request.headers.get("x-forwarded-for") || request.ip || "";
+  return ip.split(",")[0];
+};
 
 export async function POST(request: NextRequest) {
   try {
