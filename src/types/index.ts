@@ -1,3 +1,5 @@
+import { Timestamp } from "firebase/firestore";
+
 export type Item = {
   id: string;
   description: string;
@@ -11,5 +13,5 @@ export type Post = {
   itemId: string;
   userName: string;
   body: string;
-  timestamp?: Date;
+  timestamp?: Timestamp;
 };

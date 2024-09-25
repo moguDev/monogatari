@@ -10,16 +10,25 @@ export const MonoPickup = () => {
   const { items } = useFetchItems();
   const [item, setItem] = useState<Item | null>(null);
 
+  const setRandomItem = () => {
+    const newIndex = Math.floor(Math.random() * items.length);
+    if (items[newIndex].id === item?.id) {
+      setRandomItem();
+    } else {
+      setItem(items[newIndex]);
+    }
+  };
+
   useEffect(() => {
     if (items.length > 0) {
-      setItem(items[Math.floor(Math.random() * items.length)]);
+      setRandomItem();
     }
   }, [items]);
 
   return (
     <section className="relative md:flex bg-white bg-opacity-40 rounded-md md:p-6 p-2 pt-6">
       <div className="relative flex justify-center">
-        <div className="absolute -top-1 -left-0.5 text-2xl bg-orange-400 text-white font-buildingtracks px-3 py-1 z-10 -rotate-3 shadow">
+        <div className="absolute -top-1 -left-0.5 text-2xl bg-orange-400 text-white font-buildingtracks px-3 py-1 z-10 -rotate-1 shadow">
           <p className="-translate-y-1">求む！使い道</p>
         </div>
         <MonoCard item={item} />
@@ -30,7 +39,7 @@ export const MonoPickup = () => {
         <div className="rounded-md p-2">
           <Link
             href={`/${item?.id}`}
-            className="flex items-center justify-center w-full py-3 font-bold transition-all duration-300 hover:bg-white active:scale-95"
+            className="flex items-center justify-center w-full py-3 font-bold transition-all duration-300 active:scale-95"
           >
             <span className="material-icons mr-1" style={{ fontSize: "28px" }}>
               groups
@@ -38,7 +47,10 @@ export const MonoPickup = () => {
             みんなの使い道を見る
           </Link>
           <Divider />
-          <button className="flex items-center justify-center w-full py-3 font-bold transition-all duration-300 hover:bg-white active:scale-95">
+          <button
+            className="flex items-center justify-center w-full py-3 font-bold transition-all duration-300 active:scale-95"
+            onClick={setRandomItem}
+          >
             <span
               className="material-icons mr-0.5"
               style={{ fontSize: "24px" }}

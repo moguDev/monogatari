@@ -7,7 +7,7 @@ const GridItem = ({ item }: { item: Item }) => {
   return (
     <Link
       href={`/${item.id}`}
-      className="bg-white shadow-md p-3 m-1 cursor-pointer hover:-translate-y-1 hover:shadow-lg transition-all duration-300 relative"
+      className="bg-white shadow-md p-3 m-1 cursor-pointer hover:-rotate-2 hover:shadow-lg transition-all duration-300 relative"
     >
       <div className="relative w-full h-44 mx-auto">
         <Image
@@ -18,7 +18,12 @@ const GridItem = ({ item }: { item: Item }) => {
         />
       </div>
       <div className="flex items-center justify-between text-sm pt-2">
-        <p></p>
+        <p className="flex items-center text-xs font-sans">
+          <span className="material-icons" style={{ fontSize: "16px" }}>
+            lightbulb
+          </span>
+          {item?.postCount}
+        </p>
         <p>{item.userName}</p>
       </div>
     </Link>
@@ -26,7 +31,7 @@ const GridItem = ({ item }: { item: Item }) => {
 };
 
 export const MonoGallery = () => {
-  const { items } = useFetchItems();
+  const { items, loading } = useFetchItems();
   return (
     <div className="w-full bg-white bg-opacity-30 text-black rounded-md lg:p-4 p-2">
       <div
@@ -46,11 +51,18 @@ export const MonoGallery = () => {
           モノぎゃらりー
         </p>
       </div>
-      <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 mb-2">
-        {items.map((item, index) => (
-          <GridItem key={index} item={item} />
-        ))}
-      </div>
+      {loading ? (
+        <div className="w-full h-64 flex flex-col items-center justify-center opacity-80">
+          <span className="loading loading-dots loading-sm" />
+          <p className="text-xs">読み込み中...</p>
+        </div>
+      ) : (
+        <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 mb-2">
+          {items.map((item, index) => (
+            <GridItem key={index} item={item} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
