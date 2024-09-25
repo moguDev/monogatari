@@ -20,7 +20,11 @@ const UserPost = ({ post }: { post: Post }) => {
         <button
           className="bg-gray-400 bg-opacity-10 w-16 rounded-xl p-2"
           onClick={() => {
-            liked ? removeFavorite() : addFavorite();
+            if (liked) {
+              removeFavorite();
+            } else {
+              addFavorite();
+            }
           }}
         >
           <span className="material-icons m-0">
