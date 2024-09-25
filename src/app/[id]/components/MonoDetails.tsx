@@ -3,29 +3,43 @@ import { MonoCard } from "@/components/MonoCard";
 import { PostForm } from "@/components/PostForm";
 import { useFetchByid } from "@/hooks/useFetchById";
 import { useFetchPostsByItemId } from "@/hooks/useFetchPostsByItemId";
-import { usePostFavorite } from "@/hooks/usePostFavorite";
+import { useFavorites } from "@/hooks/useFavorites";
 import { Post } from "@/types";
 import { useParams } from "next/navigation";
 
 const UserPost = ({ post }: { post: Post }) => {
-  const { addFavorite } = usePostFavorite(post.id!);
+  const { liked, likeCount, addFavorite, removeFavorite, loading } =
+    useFavorites(post.id!);
   return (
-    <div className="bg-white rounded p-3 my-2 flex">
+    <div className="bg-white rounded p-3 my-2 flex relative">
       <div className="mr-4 w-full">
         <p className="text-lg">{post.body}</p>
         <p className="text-end text-sm">{post.userName}</p>
       </div>
-      <button
-        className="bg-gray-400 bg-opacity-10 w-16 rounded-xl p-2"
-        onClick={() => {
-          addFavorite();
-        }}
-      >
-        <span className="material-icons m-0">thumb_up_alt</span>
-        <p className="text-sm m-0" style={{ lineHeight: "10px" }}>
-          {0}
-        </p>
-      </button>
+      <div className="relative">
+        <button
+          className="bg-gray-400 bg-opacity-10 w-16 rounded-xl p-2"
+          onClick={() => {
+            if (liked) {
+              removeFavorite();
+            } else {
+              addFavorite();
+            }
+          }}
+        >
+          <span className="material-icons m-0">
+            {liked ? "thumb_up_alt" : "thumb_up_off_alt"}
+          </span>
+          <p className="text-sm m-0" style={{ lineHeight: "10px" }}>
+            {likeCount}
+          </p>
+        </button>
+        {loading && (
+          <div className="absolute top-0 left-0 bg-white bg-opacity-80 flex items-center justify-center h-full w-full">
+            <span className="loading loading-spinner loading-xs" />
+          </div>
+        )}
+      </div>
     </div>
   );
 };
