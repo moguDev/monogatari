@@ -21,5 +21,5 @@ export const usePostFavorite = (postId: string) => {
       setLoading(false);
     }
   };
-  return { addFavorite };
+  return { loading, addFavorite };
 };

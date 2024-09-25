@@ -10,27 +10,6 @@ export const MonoPickup = () => {
   const { items } = useFetchItems();
   const [item, setItem] = useState<Item | null>(null);
 
-  const headText = (
-    <div className="relative w-max mb-4 overflow-hidden">
-      <div className="absolute bottom-0 translate-x-2 translate-y-1 bg-yellow-400 bg-opacity-50 h-4 w-full" />
-      <h2 className="relative font-buildingtracks flex items-center md:text-4xl text-[28px]">
-        <span
-          className="absolute top-[1px] left-[25px] material-icons"
-          style={{ fontSize: "16px" }}
-        >
-          auto_awesome
-        </span>
-        <span
-          className="material-icons translate-x-[1px] -rotate-12"
-          style={{ fontSize: "32px" }}
-        >
-          lightbulb
-        </span>
-        あなたの考える使い道は？？？
-      </h2>
-    </div>
-  );
-
   useEffect(() => {
     if (items.length > 0) {
       setItem(items[Math.floor(Math.random() * items.length)]);
