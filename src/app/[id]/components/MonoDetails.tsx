@@ -6,6 +6,18 @@ import { useFetchPostsByItemId } from "@/hooks/useFetchPostsByItemId";
 import { useFavorites } from "@/hooks/useFavorites";
 import { Post } from "@/types";
 import { useParams } from "next/navigation";
+import { Timestamp } from "firebase/firestore";
+
+const convertTimestampToDate = (timestamp: Timestamp): Date => {
+  const seconds = timestamp.seconds;
+  const nanoseconds = timestamp.nanoseconds;
+
+  const date = new Date(seconds * 1000 + nanoseconds / 1e6);
+
+  const jstDate = new Date(date.getTime() + 9 * 60 * 60 * 1000);
+
+  return jstDate;
+};
 
 const UserPost = ({ post }: { post: Post }) => {
   const { liked, likeCount, addFavorite, removeFavorite, loading } =
@@ -13,8 +25,16 @@ const UserPost = ({ post }: { post: Post }) => {
   return (
     <div className="bg-white rounded p-3 my-2 flex relative">
       <div className="mr-4 w-full">
-        <p className="text-lg">{post.body}</p>
-        <p className="text-end text-sm">{post.userName}</p>
+        <p className="text-lg pb-3">{post.body}</p>
+        <div className="flex items-center justify-between">
+          <p className="font-mono text-xs">
+            {convertTimestampToDate(post.timestamp!)
+              .toISOString()
+              .slice(0, 19)
+              .replace("T", " ")}
+          </p>
+          <p className="text-end text-xs">{post.userName}</p>
+        </div>
       </div>
       <div className="relative">
         <button
@@ -83,7 +103,9 @@ export const MonoDetails = () => {
               <p className="text-opacity-60">まだ使い道がないようです...</p>
             </div>
           ) : (
-            posts.map((post, index) => <UserPost key={index} post={post} />)
+            posts
+              .sort((a, b) => b.timestamp!.seconds - a.timestamp!.seconds)
+              .map((post, index) => <UserPost key={index} post={post} />)
           )}
         </section>
       </div>

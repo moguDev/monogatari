@@ -17,6 +17,7 @@ export const useFetchPostsByItemId = (itemId: string) => {
           id: doc.id,
           ...doc.data(),
         }));
+        console.log(postsData);
         setPosts(postsData as Post[]);
       }
     } catch (error) {

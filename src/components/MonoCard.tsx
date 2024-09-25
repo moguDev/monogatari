@@ -1,9 +1,13 @@
 import { Item } from "@/types";
 import Image from "next/image";
+import PinImage from "/public/images/pin.png";
 
 export const MonoCard = ({ item }: { item: Item | null }) => {
   return (
-    <div className="bg-white w-max h-max p-6 shadow-md">
+    <div className="bg-white w-max h-max p-6 shadow-md -rotate-2 relative">
+      <div className="absolute -top-3 left-36 w-10 h-10 z-20">
+        <Image src={PinImage} alt="pin_image" className="object-cover" fill />
+      </div>
       {item ? (
         <div className="h-72 w-72 relative overflow-hidden">
           <Image
@@ -33,7 +37,7 @@ export const MonoCard = ({ item }: { item: Item | null }) => {
             <span className="material-icons" style={{ fontSize: "16px" }}>
               lightbulb
             </span>
-            {0}
+            {item?.postCount}
           </p>
           {item ? <p className="text-xs">{item.userName}</p> : <></>}
         </div>
