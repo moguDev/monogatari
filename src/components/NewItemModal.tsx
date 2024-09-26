@@ -125,6 +125,9 @@ export const NewItemModal = () => {
           <div className="text-red-500 p-0.5 text-end text-xs">
             {errors.userName?.message}
           </div>
+          <p className="text-xs bg-red-100 text-red-600 p-1.5 rounded-md">
+            ※作成した「モノがたり」は削除できません。あらかじめご了承ください。
+          </p>
           {loading && (
             <div
               className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center"
