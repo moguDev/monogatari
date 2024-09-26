@@ -5,6 +5,10 @@ import { ImageResponse } from "next/og";
 import fs from "fs";
 import path from "path";
 
+export const runtime = "nodejs";
+export const alt = "About Acme";
+export const contentType = "image/png";
+
 export default async function OpengraphImage({
   params,
 }: {
