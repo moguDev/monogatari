@@ -6,6 +6,7 @@ export type Item = {
   imageUrl: string;
   userName: string;
   postCount?: number;
+  timestamp?: Timestamp;
 };
 
 export type Post = {

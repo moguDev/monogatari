@@ -3,7 +3,7 @@ import { NewItemModal } from "./NewItemModal";
 export const FloatingActionButton = () => {
   return (
     <div className="relative max-w-4xl mx-auto">
-      <div className="fixed">
+      <div className="fixed right-0">
         <button
           type="button"
           onClick={() => {
