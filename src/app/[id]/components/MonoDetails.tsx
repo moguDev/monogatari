@@ -7,6 +7,7 @@ import { useFavorites } from "@/hooks/useFavorites";
 import { Post } from "@/types";
 import { useParams } from "next/navigation";
 import { Timestamp } from "firebase/firestore";
+import XIcon from "@mui/icons-material/X";
 
 const convertTimestampToDate = (timestamp: Timestamp): Date => {
   const seconds = timestamp.seconds;
@@ -68,10 +69,28 @@ export const MonoDetails = () => {
   const { id } = useParams();
   const { item } = useFetchByid(id as string);
   const { posts, loading, fetch } = useFetchPostsByItemId(id as string);
+
+  const currentUrl = `https://モノがたり.com/${id}`;
+  const twitterShareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+    `「モノがたり」でみんなの捨てられない「モノ」の使い道を考えよう！ \n #RUNTEQ #ミニアプリWeek \n`
+  )}&url=${encodeURIComponent(currentUrl)}`;
+
   return (
     <div className="lg:flex">
       <div className="flex flex-col items-center justify-start p-2 space-y-2">
         <MonoCard item={item} />
+        <div className="pt-5 w-full">
+          <a
+            href={twitterShareUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white w-full p-3 rounded-md flex items-center justify-center transition-all duration-300 active:scale-95"
+            style={{ backgroundColor: "#222" }}
+          >
+            <XIcon style={{ fontSize: "20px", color: "fcfcf5" }} />
+            <span className="ml-1">で使い道を募集する！</span>
+          </a>
+        </div>
       </div>
       <div className="px-4 py-2 space-y-4 w-full">
         <PostForm itemId={id as string} fetchPost={fetch} />
