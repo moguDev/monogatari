@@ -9,6 +9,14 @@ export const runtime = "nodejs";
 export const alt = "About Acme";
 export const contentType = "image/png";
 
+async function loadFont(url: string) {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch font: ${response.statusText}`);
+  }
+  return Buffer.from(await response.arrayBuffer());
+}
+
 export default async function OpengraphImage({
   params,
 }: {
@@ -20,13 +28,12 @@ export default async function OpengraphImage({
   const item: Item = { id: id, ...docSnap.data() } as Item;
 
   // フォントの読み込み
-  const fontBokutachi = path.join(process.cwd(), "/public/fonts/bokutachi.otf");
-  const fontBokutachiData = fs.readFileSync(fontBokutachi);
-  const fontBuilding = path.join(
-    process.cwd(),
-    "/public/fonts/Buildingsandundertherailwaytracksfree_ver.otf"
-  );
-  const fontBuildingData = fs.readFileSync(fontBuilding);
+  const fontBokutachiUrl = "https://モノがたり.com/fonts/bokutachi.otf";
+  const fontBuildingUrl =
+    "https://モノがたり.com/fonts/Buildingsandundertherailwaytracksfree_ver.otf";
+
+  const fontBokutachiData = await loadFont(fontBokutachiUrl);
+  const fontBuildingData = await loadFont(fontBuildingUrl);
 
   // ピン画像の読み込み
   const imagePath = path.join(process.cwd(), "public/images/pin.png");
