@@ -70,7 +70,9 @@ export default async function OpengraphImage({
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
           </div>
-          <p style={{ fontSize: "24px" }}>{item.description}</p>
+          <p style={{ fontSize: "22px", lineHeight: "32px", width: "350px" }}>
+            {item.description}
+          </p>
           <div
             style={{
               position: "absolute",
