@@ -15,20 +15,6 @@ async function loadFont(url: string) {
   return Buffer.from(await response.arrayBuffer());
 }
 
-// async function getBase64Image(url: string): Promise<string> {
-//   const response = await fetch(url);
-//   const blob = await response.blob();
-//   const reader = new FileReader();
-
-//   return new Promise((resolve, reject) => {
-//     reader.onloadend = () => {
-//       resolve(reader.result as string);
-//     };
-//     reader.onerror = reject;
-//     reader.readAsDataURL(blob);
-//   });
-// }
-
 export default async function OpengraphImage({
   params,
 }: {
@@ -43,14 +29,8 @@ export default async function OpengraphImage({
   const fontBokutachiUrl = "https://モノがたり.com/fonts/bokutachi.otf";
   const fontBuildingUrl =
     "https://モノがたり.com/fonts/Buildingsandundertherailwaytracksfree_ver.otf";
-
   const fontBokutachiData = await loadFont(fontBokutachiUrl);
   const fontBuildingData = await loadFont(fontBuildingUrl);
-
-  // ピン画像の読み込み
-  // const base64Image = await getBase64Image(
-  //   "https://モノがたり.com/images/pin.png"
-  // );
 
   return new ImageResponse(
     (
@@ -90,37 +70,7 @@ export default async function OpengraphImage({
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
           </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-            }}
-          >
-            <p style={{ fontSize: "24px" }}>{item.description}</p>
-            <p style={{ width: "100%", textAlign: "end" }}>{item.userName}</p>
-          </div>
-          {/* <div
-            style={{
-              position: "absolute",
-              top: -10,
-              left: 180,
-              display: "flex",
-              width: "45px",
-              height: "45px",
-              zIndex: 999,
-            }}
-          >
-            <img
-              src={base64Image}
-              alt="pin_image"
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-              }}
-            />
-          </div> */}
+          <p style={{ fontSize: "24px" }}>{item.description}</p>
           <div
             style={{
               position: "absolute",
@@ -148,11 +98,13 @@ export default async function OpengraphImage({
         </div>
         <div
           style={{
+            position: "relative",
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
+            alignItems: "flex-start",
             justifyContent: "center",
             marginLeft: "20px",
+            fontFamily: '"building", sans-serif',
           }}
         >
           <div
@@ -160,21 +112,77 @@ export default async function OpengraphImage({
               position: "relative",
               display: "flex",
               fontSize: "64px",
-              fontFamily: '"building", sans-serif',
+              margin: 10,
+              padding: 0,
             }}
           >
             <div
               style={{
                 position: "absolute",
-                top: 96,
+                top: 35,
                 left: 15,
                 width: "100%",
                 height: "20px",
+                margin: 0,
+                padding: 0,
                 backgroundColor: "#F59E0B80",
               }}
             />
-            <p style={{ transform: "translateY(-24px)" }}>
+            <p
+              style={{ transform: "translateY(-24px)", margin: 0, padding: 0 }}
+            >
               あなたの考える使い道は？？？
+            </p>
+          </div>
+          <p
+            style={{
+              fontSize: "36px",
+              margin: "0 0 0 20px",
+              padding: 0,
+            }}
+          >
+            思い入れがあって捨てられない...
+          </p>
+          <p
+            style={{
+              fontSize: "36px",
+              margin: "0 0 0 20px",
+              padding: 0,
+            }}
+          >
+            そんな
+            <span style={{ fontSize: "44px", transform: "translateY(-10px)" }}>
+              「モノ」
+            </span>
+            の使い道みんなで考えましょう！
+          </p>
+          <div
+            style={{
+              position: "absolute",
+              bottom: 0,
+              right: 0,
+              display: "flex",
+              flexDirection: "column",
+              marginTop: "40px",
+            }}
+          >
+            <p
+              style={{
+                fontSize: "56px",
+                margin: "0 0 0 20px",
+                padding: 0,
+              }}
+            >
+              モノがたり
+            </p>
+            <p
+              style={{
+                fontSize: "20px",
+                margin: "0 0 0 20px",
+                padding: 0,
+              }}
+            >
+              捨てられない「モノ」の使い道をみんなで考えるアプリ
             </p>
           </div>
         </div>
