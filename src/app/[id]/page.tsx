@@ -1,7 +1,5 @@
 import { Metadata } from "next";
 import { MonoDetails } from "./components/MonoDetails";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "@/lib/firebase/firebase";
 
 export async function generateMetadata({
   params,
@@ -9,8 +7,6 @@ export async function generateMetadata({
   params: { id: string };
 }): Promise<Metadata> {
   const { id } = params;
-  const docRef = doc(db, "items", id);
-  const docSnap = await getDoc(docRef);
 
   return {
     openGraph: {
