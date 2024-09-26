@@ -12,7 +12,6 @@ export async function generateMetadata({
   const { id } = params;
   const docRef = doc(db, "items", id);
   const docSnap = await getDoc(docRef);
-  const item: Item = { id: id, ...docSnap.data() } as Item;
 
   return {
     openGraph: {
