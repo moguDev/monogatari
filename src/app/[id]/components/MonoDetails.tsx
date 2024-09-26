@@ -27,7 +27,7 @@ const UserPost = ({ post }: { post: Post }) => {
       <div className="mr-4 w-full">
         <p className="text-lg pb-3">{post.body}</p>
         <div className="flex items-center justify-between">
-          <p className="font-mono text-xs">
+          <p className="font-mono text-xs select-none">
             {convertTimestampToDate(post.timestamp!)
               .toISOString()
               .slice(0, 19)
