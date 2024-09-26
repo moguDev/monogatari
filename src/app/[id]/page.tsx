@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import { MonoDetails } from "./components/MonoDetails";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase/firebase";
-import { Item } from "@/types";
 
 export async function generateMetadata({
   params,
