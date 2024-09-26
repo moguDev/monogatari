@@ -26,7 +26,7 @@ export const MonoPickup = () => {
   }, [items]);
 
   return (
-    <section className="relative md:flex bg-white bg-opacity-40 rounded-md md:p-6 p-2 pt-6">
+    <section className="relative md:flex bg-white bg-opacity-50 rounded-md md:p-6 p-2 pt-6">
       <div className="relative flex justify-center">
         <div className="absolute -top-1 -left-0.5 text-2xl bg-orange-400 text-white font-buildingtracks px-3 py-1 z-10 -rotate-1 shadow">
           <p className="-translate-y-1">求む！使い道</p>
@@ -39,8 +39,11 @@ export const MonoPickup = () => {
         <div className="rounded-md p-2">
           <Link
             href={`/${item?.id}`}
-            className="flex items-center justify-center w-full py-3 font-bold transition-all duration-300 active:scale-95"
+            className="flex items-center justify-center w-full py-3 font-bold transition-all duration-300 active:scale-95 relative"
           >
+            <div className="absolute flex items-center justify-end transition-all duration-700 opacity-0 -translate-x-2 hover:opacity-100 hover:translate-x-0 w-full h-full">
+              <span className="material-icons">keyboard_arrow_right</span>
+            </div>
             <span className="material-icons mr-1" style={{ fontSize: "28px" }}>
               groups
             </span>
@@ -48,7 +51,7 @@ export const MonoPickup = () => {
           </Link>
           <Divider />
           <button
-            className="flex items-center justify-center w-full py-3 font-bold transition-all duration-300 active:scale-95"
+            className="flex items-center justify-center w-full py-3 font-bold transition-all duration-300 hover:scale-105 active:scale-95"
             onClick={setRandomItem}
           >
             <span
