@@ -2,8 +2,6 @@ import { db } from "@/lib/firebase/firebase";
 import { Item } from "@/types";
 import { doc, getDoc } from "firebase/firestore";
 import { ImageResponse } from "next/og";
-import fs from "fs";
-import path from "path";
 
 export const runtime = "nodejs";
 export const alt = "About Acme";
@@ -16,6 +14,20 @@ async function loadFont(url: string) {
   }
   return Buffer.from(await response.arrayBuffer());
 }
+
+// async function getBase64Image(url: string): Promise<string> {
+//   const response = await fetch(url);
+//   const blob = await response.blob();
+//   const reader = new FileReader();
+
+//   return new Promise((resolve, reject) => {
+//     reader.onloadend = () => {
+//       resolve(reader.result as string);
+//     };
+//     reader.onerror = reject;
+//     reader.readAsDataURL(blob);
+//   });
+// }
 
 export default async function OpengraphImage({
   params,
@@ -36,9 +48,9 @@ export default async function OpengraphImage({
   const fontBuildingData = await loadFont(fontBuildingUrl);
 
   // ピン画像の読み込み
-  const imagePath = path.join(process.cwd(), "public/images/pin.png");
-  const imageData = fs.readFileSync(imagePath);
-  const base64Image = `data:image/png;base64,${imageData.toString("base64")}`;
+  // const base64Image = await getBase64Image(
+  //   "https://モノがたり.com/images/pin.png"
+  // );
 
   return new ImageResponse(
     (
@@ -88,7 +100,7 @@ export default async function OpengraphImage({
             <p style={{ fontSize: "24px" }}>{item.description}</p>
             <p style={{ width: "100%", textAlign: "end" }}>{item.userName}</p>
           </div>
-          <div
+          {/* <div
             style={{
               position: "absolute",
               top: -10,
@@ -108,7 +120,7 @@ export default async function OpengraphImage({
                 objectFit: "cover",
               }}
             />
-          </div>
+          </div> */}
           <div
             style={{
               position: "absolute",
