@@ -79,7 +79,7 @@ export const MonoDetails = () => {
     <div className="lg:flex">
       <div className="flex flex-col items-center justify-start p-2 space-y-2">
         <MonoCard item={item} />
-        <div className="pt-5 w-full">
+        <div className="pt-5 px-6 w-full">
           <a
             href={twitterShareUrl}
             target="_blank"

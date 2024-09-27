@@ -5,7 +5,6 @@ export const FloatingActionButton = () => {
     <div className="relative max-w-4xl mx-auto flex flex-row-reverse">
       <div className="fixed bottom-0 my-3">
         {" "}
-        {/* 中央寄りから右へ */}
         <button
           type="button"
           onClick={() => {
