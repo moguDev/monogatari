@@ -10,8 +10,14 @@ export const useUploadImage = () => {
     return new Promise<string>((resolve, reject) => {
       if (!imageFile) return reject("No file selected");
 
-      const storageRef = ref(storage, imageFile.name);
-      const uploadTask = uploadBytesResumable(storageRef, imageFile);
+      const uniqueFileName = `${Date.now()}_${imageFile.name}`;
+      const storageRef = ref(storage, uniqueFileName);
+      const metadata = {
+        cacheControl: "public, max-age=31536000",
+        contentType: imageFile.type,
+      };
+
+      const uploadTask = uploadBytesResumable(storageRef, imageFile, metadata);
 
       uploadTask.on(
         "state_changed",
